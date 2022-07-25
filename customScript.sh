@@ -22,7 +22,7 @@ echo $vm_gen
         DISKS=($(ls /dev/sd*|egrep -v "${BLACKLIST}|[0-9]$"))
         echo "Below disks will be checked if they are mounted"
         echo ${DISKS[@]}
-
+        i=0
         for disk in "${DISKS[@]}";
         do
                 echo "Checking for disk ${disk}"
@@ -30,10 +30,10 @@ echo $vm_gen
                 if [[ ${isFormatted} -eq 1 ]];
                 then
                         echo "Drive ${disk} is NOT FORMATTED"
-                        sudo mkdir /ultratestdrive
+                        sudo mkdir /ultratestdrive_${i}
                         sudo mkfs.xfs -b size=4096 ${disk}
-                        sudo mount ${disk} /ultratestdrive
-
+                        sudo mount ${disk} /ultratestdrive_${i}
+                        ((i=i+1))
                 else
                         echo "DRIVE ${disk} is FORMATTED"
                 fi
