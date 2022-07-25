@@ -1,3 +1,4 @@
+#!/bin/bash
 echo $HOME
 sudo apt-get update
 sudo apt -y -q=2 install jq
