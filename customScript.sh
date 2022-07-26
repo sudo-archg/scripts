@@ -33,6 +33,7 @@ echo $vm_gen
                         sudo mkdir /ultratestdrive_${i}
                         sudo mkfs.xfs -b size=4096 ${disk}
                         sudo mount ${disk} /ultratestdrive_${i}
+                        echo -e "${disk} /ultratestdrive_${i} xfs defaults 0 0\n" >>/etc/fstab
                         ((i=i+1))
                 else
                         echo "DRIVE ${disk} is FORMATTED"
